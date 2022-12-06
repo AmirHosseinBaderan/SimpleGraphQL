@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Services.Implementation;
+using Services.Repository;
 
 namespace Services.Injection;
 
@@ -14,6 +16,8 @@ public static class ProgramInjections
         services.AddDbContext<GraphContext>(options => options.UseSqlServer(configuration.GetConnectionString("GraphDb")));
 
         //Db Services
+        services.AddTransient<IGroupRepository, GroupRepository>();
+        services.AddTransient<IProductRepository, ProductRepository>();
 
         services.AddGraphQLServer();
 
