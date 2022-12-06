@@ -19,7 +19,11 @@ public static class ProgramInjections
         services.AddTransient<IGroupRepository, GroupRepository>();
         services.AddTransient<IProductRepository, ProductRepository>();
 
-        services.AddGraphQLServer();
+        services.AddGraphQLServer()
+            .AddQueryType<Query.Query>()
+            .AddProjections()
+            .AddFiltering()
+            .AddSorting();
 
 
 
